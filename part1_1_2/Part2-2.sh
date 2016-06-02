@@ -1,10 +1,10 @@
 #!/bin/bash
 
 find_bysize_function(){
-		if [[ ! $(  find /home/$USER/"$1" -type f -size +"$2""$3" ) ]]; then
+		if [[ ! $(  find /home/$USER/"$1" -type f -size -"$2""$3" ) ]]; then
 			echo "No such file."		
 		else
-			find /home/$USER/"$1" -type f -size +"$2""$3" -ls
+			find /home/$USER/"$1" -type f -size -"$2""$3" -ls
 		fi
 }
 
