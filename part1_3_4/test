@@ -1,0 +1,6 @@
+print "Found ${#files[@]} files:"
+let i=0
+while (( i < ${#files[@]} )); do
+  print "The file '${files[i]}' was modified on ${dates[i]}."
+  let i+=1
+done

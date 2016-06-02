@@ -1,0 +1,10 @@
+todate=$(date -d 2016-02-03 +"%Y%m%d")  
+mod=$(date -r case +"%Y%m%d")
+echo $mod;
+
+if [ $mod -ge $todate ]; 
+then
+	echo 'yes';
+else
+	echo 'no';
+fi
