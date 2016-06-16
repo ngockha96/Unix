@@ -1,0 +1,31 @@
+todate=$(date -d 20160602 +"%Y%m%d") 
+
+files=(*)
+mod=()
+for (( i=0; i<=5; i++ )); do
+	
+	mod[i]=$(date -r ${files[i]} +"%Y%m%d");	
+	echo ${mod[i]};
+
+done
+
+mod=$(date -r case +"%Y%m%d")
+mod2=$(date -r test +"%Y%m%d")
+
+arr=($mod $mod2)
+
+for (( i=0; i<=1; i++ )); do
+    
+    if [[ ${arr[i]} -gt $todate ]];
+    then 
+    	echo '';
+    	echo ${arr[i]} 'is greater than the given date';
+    	date=${arr[i]};
+    	(( date += 1 ));
+
+    	find . -newermt ${arr[i]} ! -newermt $date -ls
+    else
+    	echo '';
+    	echo ${arr[i]} 'is not greater than the given date';
+    fi
+done

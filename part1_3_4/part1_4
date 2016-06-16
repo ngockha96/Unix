@@ -1,0 +1,33 @@
+#!/bin/bash
+files=(*)
+dates=()
+for (( i=0; i<${#files[@]}; i++ )); do
+	
+	dates[i]=$(date -r ${files[i]} +"%Y%m%d")
+	nooffiles=${#files[@]}
+
+	while [[ $nooffiles -gt 1 ]]
+	do
+		index=0
+		indexend=$(( $nooffiles - 2 ))
+		#indexend= expr $nooffiles - 2
+		#echo $indexend
+		while [ $index -le $indexend ]
+		do
+			if [ ${dates[$index]} -gt ${dates[$(( $index + 1 ))]} ] 
+			then 
+				temp=${dates[$index]}
+				dates[$index]=${dates[$(( $index + 1 ))]}
+				dates[$(( $index + 1 ))]=$temp
+			fi
+			index=$(( $index + 1 ))
+		done
+		nooffiles=$(( $nooffiles - 1 ))
+
+	done
+
+	echo ${files[i]}
+
+done
+
+

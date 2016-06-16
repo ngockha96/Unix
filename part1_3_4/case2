@@ -1,0 +1,3 @@
+todate=$(date -d 2016-02-03 +"%Y%m%d")  
+
+find /home/kha/shell/final/part1_3_4/eg -newermt $todate
