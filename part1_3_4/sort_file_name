@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "The list of files sorted by file name: "
+ls|sort -V | tee sort_file_name_output.txt
