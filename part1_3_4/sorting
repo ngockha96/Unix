@@ -1,0 +1,97 @@
+#!/bin/bash
+
+files=(*)
+dates=()
+
+i=0
+option=0
+while [[ $option!=1 && $option!=2 && $option!=3 ]]
+do
+	echo "Select what you want to sort: <1> By Modified Dates <2> By Size <3> By Name";
+	echo "'Ctrl + C' to exit"
+	read option;
+
+
+	# Sort by modified dates
+	if [ $option -eq 1 ]
+    then
+
+		for (( i = 0; i<${#files[@]}; i++ ))
+		do
+			dates[$i]=$(date -r ${files[i]} +"%Y%m%d");
+			
+		done
+
+		# Sorting 
+		echo "The list of files sorted by last modified dates: "
+		for (( i = 0; i<${#files[@]} ; i++ ))
+		do
+
+			for (( j = $i; j<${#files[@]}; j++ ))
+			do
+				if [[ ${dates[$i]} -gt ${dates[$j]} ]]; then
+					t=${dates[$i]}
+					dates[$i]=${dates[$j]}
+					dates[$j]=$t
+
+					t2=${files[$i]}
+					files[$i]=${files[$j]}
+					files[$j]=$t2
+				fi
+
+			done	
+
+			echo ${files[$i]};
+			# echo ${dates[$i]};
+
+		done | tee sort_modified_date_output.txt
+		echo "";
+	fi
+
+
+	# Sort by file size
+	if [ $option -eq 2 ]
+    then
+    	for (( i = 0; i<${#files[@]}; i++ ))
+		do
+		   size[$i]=$(stat -c%s "${files[$i]}");
+		   
+		done
+
+		# Sorting 
+		echo "The list of file sorted by file size: "
+		for (( i = 0; i<${#files[@]} ; i++ ))
+		do
+
+		   for (( j = $i; j<${#files[@]}; j++ ))
+		   do
+		      if [[ ${size[$i]} -gt ${size[$j]} ]]; then
+		         t=${size[$i]}
+		         size[$i]=${size[$j]}
+		         size[$j]=$t
+
+		         t2=${files[$i]}
+		         files[$i]=${files[$j]}
+		         files[$j]=$t2
+		      fi
+
+		   done 
+
+		   echo ${files[$i]};
+		   # echo ${size[$i]} 
+
+		done | tee sort_file_size_output.txt
+		echo "";
+	fi 
+
+
+	# Sort by file name
+	if [ $option -eq 3 ]
+    then
+		echo "The list of files sorted by file name: "
+		ls|sort -V | tee sort_file_name_output.txt
+		echo "";
+	fi
+
+done
+
