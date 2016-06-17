@@ -14,7 +14,7 @@ for (( i=0; i<${#files[@]}; i++ )); do
 		#echo $indexend
 		while [ $index -le $indexend ]
 		do
-			if [ ${dates[$index]} -gt ${dates[$(( $index + 1 ))]} ] 
+			if [[ ${dates[$index]} -gt ${dates[$(( $index + 1 ))]} ]] 
 			then 
 				temp=${dates[$index]}
 				dates[$index]=${dates[$(( $index + 1 ))]}

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+files=(*)
+dates=()
+
+for (( i = 0; i<${#files[@]}; i++ ))
+do
+	dates[$i]=$(date -r ${files[i]} +"%Y%m%d");
+	
+done
+
+# Sorting of numbers
+for (( i = 0; i<${#files[@]} ; i++ ))
+do
+	# dates[i]=$(date -r ${files[i]} +"%Y%m%d");
+
+	for (( j = $i; j<${#files[@]}; j++ ))
+	do
+		if [[ ${dates[$i]} -gt ${dates[$j]} ]]; then
+			t=${dates[$i]}
+			dates[$i]=${dates[$j]}
+			dates[$j]=$t
+		fi
+
+	done	
+
+	# echo ${files[$i]};
+	echo ${dates[$i]};
+	
+done 
+
+# Printing the sorted number
+#echo -e "\nSorted Numbers "
+# for (( i=0; i<nooffiles; i++ ))
+# do
+# 	echo ${dates[$i]};
+# done
