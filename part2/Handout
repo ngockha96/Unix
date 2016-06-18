@@ -1,0 +1,5 @@
+mysql -u root -p (open mysql)
+gcc client.c -o client.o `mysql_config --cflags --libs` (command line complie app)
+./server.o (open server)
+./client.o -s serverip:port -p clientport -n clientname (open client)
+USE UNIX DATABASE COMLUMN CHAT_HISTORY

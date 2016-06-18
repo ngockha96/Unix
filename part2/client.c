@@ -7,6 +7,9 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <errno.h>
+#include <mysql.h>
+#include <my_global.h>
+#include <time.h>
 	
 #define BUFSIZE 2000
 #define SIZE 20
@@ -83,6 +86,37 @@ void getserverip_port(char **args, char *ip, char *s_port)
         s_port[j] = '\0';
 }
 
+void connectto_database(char* c_name, char* messages,time_t now){
+   MYSQL *conn;
+   MYSQL_RES *res;
+   MYSQL_ROW row;
+   char *server = "localhost";
+   char *user = "root";
+   char *password = "datvip12"; /* set me first */
+   char *database = "UNIX";
+   char q[BUFSIZE];
+   sprintf(q,"INSERT INTO CHAT_HISTORY (Name,Message,Time) VALUES('%s','%s','%s')",c_name,messages,ctime(&now));
+   // char *tempquery = " INSERT INTO CHAT_HISTORY (Name,Message) VALUES ('DOGD',"messages","now"); " ;
+   conn = mysql_init(NULL);
+   /* Connect to database */
+   if (!mysql_real_connect(conn, server, user, password, database, 0, NULL, 0)) {
+      fprintf(stderr, "%s\n", mysql_error(conn));
+      exit(1);
+   }
+   /* send SQL query */
+   if (mysql_query(conn, q)) {
+      fprintf(stderr, "%s\n", mysql_error(conn));
+      exit(1);
+   }
+   res = mysql_use_result(conn);
+   /* output table name */
+   // printf("MySQL Tables in UNIX database:\n");
+   // while ((row = mysql_fetch_row(res)) != NULL)
+   //    printf("%s \n", row[0]);
+   /* close connection */
+   mysql_free_result(res);
+   mysql_close(conn);
+}
 	
 void send_recv(int i, int sockfd, char *c_name)
 {	
@@ -92,6 +126,9 @@ void send_recv(int i, int sockfd, char *c_name)
 	//0 is the standard input
 	if (i == 0){
 		fgets(send_buf, BUFSIZE, stdin);
+		time_t t;
+    	time(&t);
+		connectto_database(c_name,send_buf,t);
 		fflush(stdin);
 		if (strcmp(send_buf , "quit\n") == 0 || strcmp(send_buf , "QUIT\n") == 0) {
 			exit(0);
@@ -104,6 +141,7 @@ void send_recv(int i, int sockfd, char *c_name)
 		printf("%s\n" , recv_buf);
 	}
 }
+
 int main(int argc, char *argv[])
 {
 	int sockfd, fdmax, i;
@@ -113,6 +151,8 @@ int main(int argc, char *argv[])
 	char ip[SIZE], s_port[SIZE], c_name[SIZE], c_port[SIZE];
 	
 	commandline_parse(argc, argv, ip, s_port, c_port, c_name);
+	// printf("what is your password\n" );
+	// scanf("%s",password);
 	printf("%s started\n", c_name);
 	connectto_server(&sockfd, &server_addr, &my_addr, s_port, c_port, ip);
 	set_clear(sockfd, &read_fds, &master);
