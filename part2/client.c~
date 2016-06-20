@@ -125,6 +125,7 @@ void send_recv(int i, int sockfd, char *c_name)
 	char temp[BUFSIZE];
 	//0 is the standard input
 	if (i == 0){
+		printf("%s: ",c_name);
 		fgets(send_buf, BUFSIZE, stdin);
 		time_t t;
     	time(&t);
