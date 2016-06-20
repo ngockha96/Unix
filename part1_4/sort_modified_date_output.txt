@@ -1,0 +1,15 @@
+/home/kha/Unix/Qt/Unixhixhix/main.cpp
+/home/kha/Unix/Qt/Unixhixhix/mainwindow.h
+/home/kha/Unix/Qt/Unixhixhix/mainwindow.ui
+/home/kha/Unix/Qt/Unixhixhix/part1_3a_3b
+/home/kha/Unix/Qt/Unixhixhix/sort_file_size_output.txt
+/home/kha/Unix/Qt/Unixhixhix/test.sh
+/home/kha/Unix/Qt/Unixhixhix/Unixhixhix.pro
+/home/kha/Unix/Qt/Unixhixhix/part1_4_name
+/home/kha/Unix/Qt/Unixhixhix/part1_4_size
+/home/kha/Unix/Qt/Unixhixhix/mainwindow.cpp
+/home/kha/Unix/Qt/Unixhixhix/sort_modified_date_output.txt
+/home/kha/Unix/Qt/Unixhixhix/code1.qrc
+/home/kha/Unix/Qt/Unixhixhix/part1_4_md
+/home/kha/Unix/Qt/Unixhixhix/Unixhixhix.pro.user
+/home/kha/Unix/Qt/Unixhixhix/Unixhixhix.pro.user.7f31d1b

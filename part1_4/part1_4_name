@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# echo "The list of files sorted by file name: "
+# ls ~/Unixhixhix|sort -V | tee sort_file_name_output.txt
+# echo "";
+
+path=$*
+files=(/home/$USER/$path/*);
+
+echo "The list of files sorted by file name: "
+
+sorted_arr=( $(
+for a in "${files[@]}"
+do 
+	echo "$a"
+done | sort) )
+
+for (( i = 0; i<${#files[@]} ; i++ ))
+do
+	echo "${sorted_arr[i]}"
+done | tee sort_file_name_output.txt

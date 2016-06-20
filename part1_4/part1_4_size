@@ -1,0 +1,39 @@
+#!/bin/bash
+
+path=$*
+
+files=(/home/$USER/$path/*);
+size=()
+
+# Sort by file size
+
+for (( i = 0; i<${#files[@]}; i++ ))
+do
+   size[$i]=$(stat -c%s "${files[$i]}");
+   
+done
+
+# Sorting 
+echo "The list of file sorted by file size: "
+for (( i = 0; i<${#files[@]} ; i++ ))
+do
+
+   for (( j = $i; j<${#files[@]}; j++ ))
+   do
+      if [[ ${size[$i]} -gt ${size[$j]} ]]; then
+         t=${size[$i]}
+         size[$i]=${size[$j]}
+         size[$j]=$t
+
+         t2=${files[$i]}
+         files[$i]=${files[$j]}
+         files[$j]=$t2
+      fi
+
+   done 
+
+   echo ${files[$i]};
+   # echo ${size[$i]} 
+
+done | tee sort_file_size_output.txt
+	

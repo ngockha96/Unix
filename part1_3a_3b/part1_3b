@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo 'Date format: YYYYmmDD' 
+todate=$(date -d 20160602 +"%Y%m%d") 
+echo 'Given date: ' $todate
+echo ''
+
+path=$1
+
+files=(/home/$USER/$path/*)
+nooffiles=${#files[@]}
+dates=()
+
+for (( i=0; i<nooffiles; i++ )); do
+  
+dates[i]=$(date -r ${files[i]} +"%Y%m%d");  
+
+if [[ ${dates[i]} -lt $todate ]];
+  then 
+    echo ${files[i]} 'last modified date is less than the given date: ' ${dates[i]};
+
+  else
+    echo ${files[i]} 'last modified date is not less than the given date: ' ${dates[i]};
+fi
+
+done

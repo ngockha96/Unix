@@ -1,0 +1,10 @@
+/home/kha/code/code.qrc
+/home/kha/code/main.cpp
+/home/kha/code/mainwindow.h
+/home/kha/code/part1_3a_3b.pro
+/home/kha/code/part1_3b
+/home/kha/code/part1_3a
+/home/kha/code/mainwindow.cpp
+/home/kha/code/part1_3a_3b
+/home/kha/code/mainwindow.ui
+/home/kha/code/part1_3a_3b.pro.user
