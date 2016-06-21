@@ -8,13 +8,13 @@ size=()
 
 for (( i=0; i<${#files[@]}; i++ )); do
   
-size[$i]=$(stat -c%s "${files[$i]}");
+	size[$i]=$(stat -c%s "${files[$i]}");
 
 
-if [[ ${size[i]} -gt $given ]];
-  then 
-    echo "${files[i]} ----- ${size[i]}"
+	if [[ ${size[i]} -gt $given ]];
+	  then 
+	    echo "${files[i]} ----- ${size[i]}"
 
-fi
+	fi
 
 done

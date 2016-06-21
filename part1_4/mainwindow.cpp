@@ -26,12 +26,11 @@ void MainWindow::on_pushButton_clicked()
 
     QString path = ui->lineEdit->text();
 
-    QObject *parent;
-    QString program = "/home/kha/Unix/part1_4/part1_4_md";
+    QString program = "/home/kha/shell/final3/part1_4/part1_4_md";
     QStringList arguments;
     arguments << path;
 
-    QProcess *process = new QProcess(parent);
+    QProcess *process = new QProcess;
     process->start(program, arguments);
     process->waitForBytesWritten();
     process->waitForFinished();
@@ -47,12 +46,11 @@ void MainWindow::on_pushButton_2_clicked()
 {
     QString path = ui->lineEdit->text();
 
-    QObject *parent;
-    QString program = "/home/kha/Unix/part1_4/part1_4_size";
+    QString program = "/home/kha/shell/final3/part1_4/part1_4_size";
     QStringList arguments;
     arguments << path;
 
-    QProcess *process = new QProcess(parent);
+    QProcess *process = new QProcess;
     process->start(program, arguments);
     process->waitForBytesWritten();
     process->waitForFinished();
@@ -67,12 +65,11 @@ void MainWindow::on_pushButton_3_clicked()
 {
     QString path = ui->lineEdit->text();
 
-    QObject *parent;
-    QString program = "/home/kha/Unix/part1_4/part1_4_name";
+    QString program = "/home/kha/shell/final3/part1_4/part1_4_name";
     QStringList arguments;
     arguments << path;
 
-    QProcess *process = new QProcess(parent);
+    QProcess *process = new QProcess;
     process->start(program, arguments);
     process->waitForBytesWritten();
     process->waitForFinished();

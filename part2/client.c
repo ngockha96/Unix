@@ -92,7 +92,7 @@ void connectto_database(char* c_name, char* messages,time_t now){
    MYSQL_ROW row;
    char *server = "localhost";
    char *user = "root";
-   char *password = "datvip12"; /* set me first */
+   char *password = "0710"; /* set me first */
    char *database = "UNIX";
    char q[BUFSIZE];
    sprintf(q,"INSERT INTO CHAT_HISTORY (Name,Message,Time) VALUES('%s','%s','%s')",c_name,messages,ctime(&now));

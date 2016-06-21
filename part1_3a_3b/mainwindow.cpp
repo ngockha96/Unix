@@ -21,12 +21,11 @@ void MainWindow::on_pushButton_clicked()
     QString path = ui->lineEdit->text();
     QString date = ui->lineEdit_2->text();
 
-    QObject *parent;
-    QString program = "/home/kha/Unix/part1_3a_3b/part1_3a";
+    QString program = "/home/kha/shell/final3/part1_3a_3b/part1_3a";
     QStringList arguments;
     arguments << path << date;
 
-    QProcess *process = new QProcess(parent);
+    QProcess *process = new QProcess;
     process->start(program, arguments);
     process->waitForBytesWritten();
     process->waitForFinished();
@@ -42,12 +41,11 @@ void MainWindow::on_pushButton_2_clicked()
     QString path = ui->lineEdit->text();
     QString date = ui->lineEdit_2->text();
 
-    QObject *parent;
-    QString program = "/home/kha/Unix/part1_3a_3b/part1_3b";
+    QString program = "/home/kha/shell/final3/part1_3a_3b/part1_3b";
     QStringList arguments;
     arguments << path << date;
 
-    QProcess *process = new QProcess(parent);
+    QProcess *process = new QProcess;
     process->start(program, arguments);
     process->waitForBytesWritten();
     process->waitForFinished();
