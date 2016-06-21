@@ -1,0 +1,2 @@
+Change modified date:
+	touch -d "$(date -R -r filename) - 2 hours" filename 
