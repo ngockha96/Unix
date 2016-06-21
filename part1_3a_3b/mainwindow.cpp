@@ -19,11 +19,12 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     QString path = ui->lineEdit->text();
+    QString date = ui->lineEdit_2->text();
 
     QObject *parent;
     QString program = "/home/kha/Unix/part1_3a_3b/part1_3a";
     QStringList arguments;
-    arguments << path;
+    arguments << path << date;
 
     QProcess *process = new QProcess(parent);
     process->start(program, arguments);
@@ -39,11 +40,12 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     QString path = ui->lineEdit->text();
+    QString date = ui->lineEdit_2->text();
 
     QObject *parent;
     QString program = "/home/kha/Unix/part1_3a_3b/part1_3b";
     QStringList arguments;
-    arguments << path;
+    arguments << path << date;
 
     QProcess *process = new QProcess(parent);
     process->start(program, arguments);
